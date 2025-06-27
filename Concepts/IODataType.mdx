@@ -1,0 +1,59 @@
+---
+title: I/O Data Types
+---
+
+# I/O Data Types
+
+LCPF defines a set of data types that can be used for inputs and outputs. 
+These data types are used to specify the kinds of values that can be sent or received by an input or output.
+
+## Supported Data Types
+
+There are a few basic categories of data types, some with further refinement
+
+### **Boolean**
+ Represents a simple choice between two options, such as
+  - on or off 
+  - true or false
+  - 0 or 1
+
+### **Color**
+Represents a color value, typically used for RGB LEDs or similar devices.
+
+
+### **Numeric**
+Represents a numeric value. Used for analog inputs/outputs (e.g.,
+ sensor readings, motor speeds). Number value types can be further refined with
+  
+  - **Range**: value should be within a specified range.  Ranges can be
+    - Unbounded: the value can be outside the range
+    - Limited: the value will always be within the range
+    - Wrapping: the value wraps around when it exceeds the range limits
+
+  - **Unit**
+    - An IODataType may have a specific associated unit, for example
+      an Input providing a distance may use millimeters as it's Unit
+
+ Numeric IODataType
+
+  - **ZeroToOne**: A value between zero and one
+
+
+## Needed Types
+[TODO:]
+This is a temporary section to describe different potential uses for 
+IODataTypes types that are not yet defined.
+
+  - angle with continuous rotation 
+    - radar dish, windmill, ...
+  - angle/position within fixed range
+    - door/gate
+    - steering
+  - level within fixed range  
+    - volume
+    - brightness
+    - speed
+  - scaling factors
+  - temporal
+    - duration
+    - acceleration
