@@ -1,0 +1,19 @@
+---
+title:  Garbage Collection
+asIndexPage: true
+---
+
+
+# Garbage Collection
+
+tidbits related to GC in CircuitPython
+
+
+
+## GC during parsing
+
+`gc_collect()` is run internally when python files are loaded / parsed (see
+shared\runtime\pyexec.c around line 139 )
+
+
+
