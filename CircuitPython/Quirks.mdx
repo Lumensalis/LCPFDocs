@@ -3,3 +3,13 @@ title: Quirks
 ---
 
 # Quirks
+
+## Things CircuitPython does not support
+
+  - `__all__ = ["a","b"]` for restricting results of `from someModule import *`
+  - `__set_name__` for descriptors
+  - `__slots__`
+  - standard modules : **inspect**, **typing**, **importlib**
+  - stack access (like `inspect.currentframe()`)
+  - setting ***\__name\__*** on function / method / closure(lambda) instances
+  - no way to reload a .mpy file?
