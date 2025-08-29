@@ -26,7 +26,7 @@ configuration is as simple as
 ```python 
 caernarfon = mainManager.TerrainTronics.addCaernarfon()
 ```
-There's no need what kind of controller you're 
+There's no need to specify what kind of controller you're 
 running on [^3] - LCPF figures that out for you.  And since it knows where the 
 various parts of the Caernarfon Castle board are connected, there's no need
 to specify pin assignments.  So if you are using the IR remote,  35 NeoPixel 
@@ -69,8 +69,6 @@ LEDS, and two servo motors,  your entire code for device configuration could be
 
 ## Generic I2C
   - SSD1306 OLED display
-  
-
 
 
 [^1]: D1MPC = D1 Mini Pin Compatible, accepts Wemos Mini shields (like Terrain-Tronics Castle boards)

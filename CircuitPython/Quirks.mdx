@@ -7,9 +7,20 @@ title: Quirks
 This section contains information about various interactions 
 between CircuitPython and LCPF.  These are not flaws in CircuitPython,
 but rather limitations and trade-offs imposed on the LCPF's goal of simplifying 
-things.
+things which might have been easier to implement in full, recent CPython systems.
+Assuming you could actually get full CPython running on a microcontroller ... 
+there are some good reasons why CircuitPython doesn't try and replicate all of CPython's features.
 
 
 ## Object / function scope
 
-For simpler projects, i
+
+## Things CircuitPython does not support
+
+  - `__all__ = ["a","b"]` for restricting results of `from someModule import *`
+  - `__set_name__` for descriptors
+  - `__slots__`
+  - standard modules : **inspect**, **typing**, **importlib**
+  - stack access (like `inspect.currentframe()`)
+  - setting ***\__name\__*** on function / method / closure(lambda) instances
+  - no way to reload a .mpy file?

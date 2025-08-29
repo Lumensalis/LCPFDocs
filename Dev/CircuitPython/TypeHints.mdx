@@ -1,0 +1,51 @@
+---
+title:  Type Hints
+---
+
+# Type Hints in CircuitPython
+
+CircuitPython does not support type hints in the same way that Python does.
+However, you can use _some_ type hints in your code to help with readability
+and to provide hints to developers about the expected types of variables
+and function parameters.
+
+## Limitations
+
+- no **typing** module
+
+CircuitPython does not include the **typing** module. However, much of the functionality provided by **typing** can be mocked in a form which CircuitPython can parse (although generally not use), which allows using much closer to the "full Python" options for type hints.  This allows _other_ things inspecting the code (such as pylint, pyright/pylance, autodoc, etc) to have more detailed information available.  
+
+In the LCPF, this is done by the **LumensalisCP.CPTyping** module, which can be used in most ways as a drop-in replacement for **typing**.
+
+
+- TypedDict for `**kwds`
+
+**LumensalisCP.CPTyping** provides both **TypedDict** and **Unpack**, which allow fuller specification of keyword arguments. However, since the standard way of defining **TypedDict** structures is with type hints only instead of actual attributes, none of the information is available at runtime to CircuitPython.
+
+
+## Workarounds
+
+### Protocol
+**typing.Protocol** allows for definition of interfaces which can be used 
+as a base class. In "full" python this allows for "duck typing" where the
+actual class does not need to inherit from the Protocol, but must implement
+the methods defined in the Protocol.  In CircuitPython, **__init_subclass__** 
+is not supported and MRO works differently (see https://docs.micropython.org/en/latest/genrst/core_language.html)
+so inheriting from a Protocol can cause properties and methods defined in the 
+Protocol to override the actual implementation.
+
+The workaround is to use TYPE_CHECKING to create the "full" protocol for
+analysis and an empty version for actual CircuitPython parsing
+
+```python
+if TYPE_CHECKING:
+    class RefreshableInterface(Protocol):
+        @property
+        def nextRefresh(self) -> TimeInSeconds|None: ...
+
+        def setNextRefresh( self, context:'EvaluationContext', when:TimeInSeconds ) -> None: ...
+        def refreshableCalculateNextRefresh(self, context:'EvaluationContext', when:TimeInSeconds) -> TimeInSeconds|None: ...
+
+else:
+    class RefreshableInterface: ...
+
