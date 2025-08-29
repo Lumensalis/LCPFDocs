@@ -1,0 +1,52 @@
+---
+title: Simple Start
+---
+
+# Simple Start
+
+Here we build up an example, step by step, to demonstrate various ways to use the LCPF.
+Note that each section of code assumes that it follows some or all of the _earlier_ sections. 
+
+## In The Beginning... [#beginning]
+
+You need a <Term name="MainManager"/> to get started.  The LCPF has some helpful shortcuts like **LumensalisCP.Simple** for basic projects, which provides easy access to a wide variety of LCPF features, including getting the <Term name="MainManager"/>.  
+
+
+```python
+from LumensalisCP.Simple import *
+
+main = ProjectManager()
+```
+
+
+
+## Add some hardware
+Here we add a [TerrainTronic Caernarfon Castle](https://github.com/Audio-Rochey/Terrain-Tronics-Caernarfon-Castle/) shield 
+```python
+caernarfon = main.TerrainTronics.addCaernarfon( neoPixelCount=45 )
+neoPixA = caernarfon.pixels 
+
+```
+
+## Setup the Lights
+
+First, you need light sources.  In this example, we'll get two NeoPixel chains
+```python
+neoPixA = caernarfon.pixels 
+neoPixB = caernarfon.initNeoPixOnServo(3,neoPixelCount=35)
+```
+Next, you setup up groups within your light sources to match the physical layout of your LED chains
+```python
+firstTwoOnPixA       = neoPixA.nextNLights(2)  # this will be leds 0 and 1 on the neoPixA chain
+leftStoneLights      = neoPixA.ring(3) # this will be the next three : 2-4
+centerStoneLights    = neoPixA.ring(7) # this will be the next seven : 5-11
+
+sceneIndicatorLights = neoPixB.stick(8) # this will be leds 0-7 the neoPixB chain
+angleGaugeLights     = neoPixB.ring(12) # this will be leds 8-19 onneoPixB
+```
+
+
+
+
+
+

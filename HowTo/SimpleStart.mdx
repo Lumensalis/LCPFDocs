@@ -1,0 +1,65 @@
+---
+title: Simple Start
+---
+
+# Simple Start
+
+Effects for your project are defined in a <Term name="ProjectConfig"/> file [^1] which LCPF uses to make things happen.  
+
+[^1]: Technically, it is a Python file which runs in [CircuitPython](https://circuitpython.org/)  using the LCPF framework.  However, you don't really need to know that - or learn Python - to use LCPF.
+
+## In The Beginning... [#beginning]
+
+>[!TIP]
+>
+> Any line in your <Term name="ProjectConfig"/> which starts with a **#** sign is a _comment_.  LCPF will ignore comments, so they doen't actually _do_ anything other than provide some (hopefully) useful information for whoever is reading it.
+
+Your <Term name="ProjectConfig"/> should always[^2] start with the following two lines  :
+```python
+from LumensalisCP.Simple import *
+main = ProjectManager()
+```
+
+[^2]: There _are_ other options, but this is by far the easist when you're getting started
+
+
+For simple projects, the easist way to start is by copying the following : 
+
+```python
+from LumensalisCP.Simple import *
+main = ProjectManager() 
+
+#############################################################################
+# SCENES : http://lumensalis.com/ql/h2Scenes
+
+#############################################################################
+# CONTROLLER : http://lumensalis.com/ql/h2Controller
+
+
+#############################################################################
+# HARDWARE : http://lumensalis.com/ql/h2Hardware
+
+
+#############################################################################
+# ACTORS : http://lumensalis.com/ql/h2Actors
+
+
+#############################################################################
+# ACTIONS : http://lumensalis.com/ql/h2Actions
+
+
+#############################################################################
+# Wrap up and launch : http://lumensalis.com/ql/h2Launch
+main.launchProject( globals() )
+```
+
+
+## Stop reading here ... ???
+
+You don't really need to understand what those two lines do, you can just put them at the top of your file and move on.   But if you're curious ...
+
+The first line, `from LumensalisCP.Simple import *`, loads the LCPF 'vocabulary' so it is avaible for the rest of the file.
+
+The second line, `main = ProjectManager()`, gives you access to the [MainManager](../Main) which you'll use to setup hardware and effects for your project.
+You need a <Term name="MainManager"/> to get started.  
+

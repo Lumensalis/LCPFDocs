@@ -1,0 +1,23 @@
+---
+title: NeoPixels
+---
+
+# How-To NeoPixels
+
+
+## Setup the Lights
+
+First, you need light sources.  In this example, we'll get two NeoPixel chains
+```python
+neoPixA = caernarfon.pixels 
+neoPixB = caernarfon.initNeoPixOnServo(3,neoPixelCount=35)
+```
+Next, you setup up groups within your light sources to match the physical layout of your LED chains
+```python
+firstTwoOnPixA       = neoPixA.nextNLights(2)  # this will be leds 0 and 1 on the neoPixA chain
+leftStoneLights      = neoPixA.ring(3) # this will be the next three : 2-4
+centerStoneLights    = neoPixA.ring(7) # this will be the next seven : 5-11
+
+sceneIndicatorLights = neoPixB.stick(8) # this will be leds 0-7 the neoPixB chain
+angleGaugeLights     = neoPixB.ring(12) # this will be leds 8-19 onneoPixB
+```

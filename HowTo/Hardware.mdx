@@ -1,0 +1,25 @@
+---
+title: Hardware
+---
+
+# How-To Hardware
+
+There's not much you can do to make interesting effects without hardware.  You need things which can light up, move, etc.  LCPF provides a way to describe what hardware you are using, to make it available fore your effects.
+
+
+## Shields 
+
+Shields are boards which "stack" on your controller.  They are typically accessed through a factory.  For example, to add a [TerrainTronic Caernarfon Castle](../Caernarfon) shield, you can use the **TerrainTronics** factory:
+```python
+caernarfon = main.TerrainTronics.addCaernarfon( neoPixelCount=45 )
+```
+
+Currently, the LCPF supports D1 Mini style shields, but that may expand in the future.  Possible additions include
+  - [Adafruit FeatherWings](https://learn.adafruit.com/adafruit-feather/featherwings)
+  - Arduino Shields
+  - [M5Stack](https://m5stack.com/)
+  - ...
+  
+
+## StemmqQT / Qwiic
+The [StemmaQT](https://learn.adafruit.com/introducing-adafruit-stemma-qt/what-is-stemma-qt)/[Qwiic](https://www.sparkfun.com/qwiic) system for I2C offers a wide variety of devices which can be quite useful for effects.   See [supported devices](../../Hardware/StemmaQTQwiic/Devices) for information on devices you can use in your project.

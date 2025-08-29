@@ -1,0 +1,85 @@
+---
+title: Supported
+---
+
+
+## Supported Controllers
+
+| Board | <Term name="ShieldStandard">shield</Term> | Chip | Ram | Flash | Features |
+| --- | --- | --- | --- | --- | --- |
+| [Lolin S2 Mini](https://www.wemos.cc/en/latest/s2/s2_mini.html) | <Term name="D1Mini"/> | ESP32-S2 | 2MB | 4MB | D1MPC[^1] |
+| [Lolin S3 Mini](https://www.wemos.cc/en/latest/s3/s3_mini.html) | <Term name="D1Mini"/> | ESP32-S3 | 2MB | 4MB | D1MPC[^1] |
+| [Lilygo T-OI+](https://lilygo.cc/products/t-oi-plus) | <Term name="D1Mini"/> | ESP32-C3 | 400K | 4MB | D1MPC[^1], battery |
+
+## Supported D1 Mini shields
+(these require a <Term name="D1Mini"/> shield compatible controller )
+
+| Shield | Designer | Features |
+| --- | --- | --- |
+| [Cilgerran Castle](https://www.tindie.com/products/terraintronics/cilgerran-castle-6x-high-power-led-and-dc-motor/) | Terrain-Tronics | 6x High Power LED and DC Motor driver |
+| [Harlech Castle](https://www.tindie.com/products/terraintronics/harlech-castle-smart-8xled-controller/) | Terrain-Tronics | Smart 8xLED Controller |
+| [Caernarfon Castle](https://www.tindie.com/products/terraintronics/caernarfon-castle-pcb-circuit-board-only/) | Terrain-Tronics | NeoPixel, IR, Qwiic/StemmaQT, triple servo |
+| [Caerphilly Castle](https://www.tindie.com/products/terraintronics/caerphilly-castle-carrier-board/) | Terrain-Tronics | Carrier board with NeoPixel, IR, Qwiic/StemmaQT |
+
+
+
+## Supported StemmaQT / Qwiic devices [#StemmaQTQwiic]
+
+| Device | Designer | Features |
+| --- | --- | --- |
+| [Harlech Castle XL](https://www.tindie.com/products/terraintronics/harlech-castle-xl-i2c-qwiicstemmaqt-24-led-controller/) | Terrain-Tronics | I2C (Qwiic/StemmaQT) 24 LED controller |
+| [AW9523](https://www.adafruit.com/product/4045) | Adafruit | I2C GPIO Expander with LED Driver |
+| [TLV493D](https://www.adafruit.com/product/4046) | Adafruit | 3D Magnetic Sensor |
+| [MPR121](https://www.adafruit.com/product/1601) | Adafruit | Capacitive Touch Sensor |
+| [Wii Nunchuk](https://www.adafruit.com/product/191) | Adafruit | Wii Nunchuk Controller |
+| [PCA9685](https://www.adafruit.com/product/815) | Adafruit | 16-Channel 12-bit PWM/Servo Driver |
+| [QtRotaryEncoder](https://www.adafruit.com/product/4047) | Adafruit | I2C Rotary Encoder |
+| [VL53L0X](https://www.adafruit.com/product/4048) | Adafruit | I2C Time-of-Flight Distance Sensor |
+
+## Generic I2C
+| Device |  Features |
+| --- | --- | 
+| SSD1306 | OLED display |
+
+
+
+# Supported Hardware
+
+In order to use all the nifty hardware that provides Inputs and/or Outputs, 
+LCPF needs to know what hardware you are using.  This is usually a fairly
+complex part of an embedded project.  LCPF makes this much easier[^5].  For example, if you
+use a [Lolin S2 Mini](https://www.wemos.cc/en/latest/s2/s2_mini.html) with a 
+[Terrain-Tronics Caernarfon Castle Kit](https://www.tindie.com/products/terraintronics/caernarfon-castle-kit/), 
+ IR remote,  35 NeoPixel LEDS, and two servo motors,  your entire code for device configuration could be
+as simple as 
+```python 
+    caernarfon = mainManager.TerrainTronics.addCaernarfon(neoPixelCount=35)
+    doorMotor = caernarfon.initServo( 1, "doorDrive" )
+    windowMotor = caernarfon.initServo( 2, "windowMotor" )
+    remote = caernarfon.addIrRemote()
+```
+No pins assignments, no addresses, no board types - LCPF handles all that for you.[^5]
+For example, if you
+use a [Lolin S2 Mini](https://www.wemos.cc/en/latest/s2/s2_mini.html) with a 
+[Terrain-Tronics Caernarfon Castle Kit](https://www.tindie.com/products/terraintronics/caernarfon-castle-kit/), 
+configuration is as simple as 
+```python 
+caernarfon = mainManager.TerrainTronics.addCaernarfon()
+```
+There's no need what kind of controller you're 
+running on [^3] - LCPF figures that out for you.  And since it knows where the 
+various parts of the Caernarfon Castle board are connected, there's no need
+to specify pin assignments.  So if you are using the IR remote,  35 NeoPixel 
+LEDS, and two servo motors,  your entire code for device configuration could be
+```python 
+    caernarfon = mainManager.TerrainTronics.addCaernarfon(neoPixelCount=35)
+    doorMotor = caernarfon.initServo( 1, "doorDrive" )
+    windowMotor = caernarfon.initServo( 2, "windowMotor" )
+    remote = caernarfon.addIrRemote()
+
+```
+
+
+[^1]: D1MPC = D1 Mini Pin Compatible, accepts Wemos Mini shields (like Terrain-Tronics Castle boards)
+[^3]: Currently supported controllers include Lolin S2 Mini, Lolin S3 Mini, and the Lilygo T-OI Plus
+[^5]: _IF_ you  stick within the "curated" set of hardware options.  However, there are already a few dozen supported devices and the list continues to grow.  

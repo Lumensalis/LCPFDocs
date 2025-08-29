@@ -1,0 +1,59 @@
+---
+title: Units
+---
+# Units
+
+A <Term name="Unit"/> gives meaning and scale to numeric values.
+
+There are a lot of "numbers" moving around in LCPF.    What does 5 mean?  How
+about -0.3? Confusion arises when we don't have a clear understanding of the units involved.
+
+While there are limitations on how well LCPF can "enforce" proper use of units,
+it does try and help as much as possible.
+
+
+There's more documentation coming on Units, as this is a fairly important 
+concept.  For now, here is a quick overview of the key unit types:
+
+| Name | Represents | In | Python type | Description | Notes |
+| --- | --- | --- | --- | -- | -- |
+| ZeroToOne | scaled value | fraction of 1 | float | a value between 0.0 and 1.0 inclusive | |
+| PlusMinusOne | scaled value | +/- fraction of 1 | float | a value between -1.0 and 1.0 inclusive | |
+| TimeInNS | time | nanoseconds |int | Time in nanoseconds | |
+| TimeSpanInNS | time span | nanoseconds | int | Time span in nanoseconds | |
+| TimeInMS | time | milliseconds | int | Time in milliseconds | |
+| TimeSpanInMS | time span | milliseconds | int | Time span in milliseconds | |
+| TimeInSeconds | time | seconds | float | Time in seconds | |
+| TimeSpanInSeconds | time span | seconds | float | Time span in seconds | |
+| DegreesPerSecond | rotation speed | degrees per second | float | rotation speed in degrees per second | |
+| Degrees | angle | degrees | float | angle in degrees | |
+| Millimeters | length | millimeters | float | length in millimeters | |
+| Volts | voltage | volts | float | voltage in volts | |
+| Hertz | frequency | cycles per second | float | frequency in cycles per second | |
+
+
+Hopefully, most of these are fairly self explanatory, although more 
+details will be added.   The two which might not be obvious, but 
+are _very_ useful to understand are:
+
+ - ZeroToOne
+   - a scaled value between 0.0 and 1.0 inclusive.
+   - It is often used for things like
+     - brightness, where 0.0 is off and 1.0 is full brightness.
+     - volume, where 0.0 is mute and 1.0 is full volume.
+     - RGB color channel values
+        - 0.0/0.0/0.0 is black
+        - 1.0/1.0/1.0 is white
+ - PlusMinusOne
+   - a scaled value between -1.0 and 1.0 inclusive.
+   - It is used for things like
+     - speed control,  where -1.0 is full reverse, 0.0 is stopped, and 1.0 is full forward.
+
+The use of 0.0 to 1.0 or -1.0 to 1.0 is very intenional, and used
+ to normalize values and make them easier to work with.  There are 
+ many examples of various devices which typically require you to "know" about 
+ specific ranges.  For example, NeoPixels typically use 0-255 for
+ each color channel.  Servo and motor controllers often use things 
+ like duty cycles and PWM frequencies which you have to take into 
+ account.   The LCPF hides those details as much as possible, and
+ the ZeroToOne/PlusMinusOne unit types are a major part of that.

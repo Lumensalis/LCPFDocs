@@ -1,8 +1,8 @@
 ---
-title: LCPF Documentation
-asIndexPage: true
+title: Overview
+#title: LCPF Documentation
+#asIndexPage: true
 ---
-
 
 # Lumensalis CircuitPython Framework Documentation
 
@@ -11,6 +11,29 @@ Lumensalis CircuitPython Framework (LCPF).
 
 ## Overview
 
+The LCPF is designed to help non-programmers incorporate interesting and
+complex interactive effects into their projects.  It doesn't completely eliminate the
+need to do a little "coding", but it makes it much easier[^1].
+
+It runs on small embedded <Term name="Controller"/>s with <Term name="Device"/>s that allow the <Term name="Controller"/> to interact with the outside world.
+
+Effects use devices to produce results in the real world, such as sound, motion, and light.
+  - NeoPixels / lights / LEDs
+    - with animation patterns
+  - audio output
+  - motion (e.g. servos, motors)
+
+Additionally, it is designed to be interactive.  Behaviors can respond to inputs from the outside world, such as
+  - sensors
+    - a variety of <Term name="StemmaQTQwiic">StemmaQT/Qwiic</Term> and other I2C sensors
+    - IR remotes
+  - remote control
+    - WebUI - built in support for HTTP WebUI
+    - REST/Websockets support for custom external Web interfaces
+    - DMX (ArtNet) 
+
+
+## Getting Started
 Before you can use the LCPF, you need to get it installed and working on 
 a supported embedded controller - see the [Getting Started](./GettingStarted/) section.
 
@@ -33,7 +56,7 @@ There are two main approaches to doing this:
       - IF there's an example 
      that does something similar to  you want
       - there will be more examples coming soon
-  - Learn all about the [Concepts](Concepts) and [Behaviors](Behaviors) in
+  - Learn all about the [Concepts](Concepts) and [Behaviors](Behavior) in
   the LCPF and define your project behaviors from scratch
     - this allows you to get the most out of the LCPF
     - but it does require a bit more work
@@ -47,6 +70,7 @@ Starting by finding and copying example code is the recommended approach for
 
 
 
+[^1]: Well, hopefully, assuming I get things right...
 
 
 

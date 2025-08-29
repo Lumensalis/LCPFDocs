@@ -1,0 +1,27 @@
+---
+title: Caernarfon Castle
+---
+
+# Caernarfon Castle
+
+[TerrainTronic Caernarfon Castle](https://github.com/Audio-Rochey/Terrain-Tronics-Caernarfon-Castle/) shield 
+
+To use a Caernarfon Castle :
+
+```python
+caernarfon = main.TerrainTronics.addCaernarfon( neoPixelCount=45 )
+```
+ Adjust **neoPixelCount** to the number of LEDS on your chain connected to the Caernarfon's Neopixel output connection
+
+ ## Servos / more NeoPixel chains
+
+ The Caernarfon Castle has three "servo" connections - 1, 2, and 3.  Each of these can be used by LCPF for either a sevro _or_ an additional NeoPixel chain.  
+   - use as servo :  caernarfon.**initServo( _servoNumber_ )** 
+   - use as neopixels : caernarfon.**initNeoPixOnServo(_servoNumber_,neoPixelCount=_N_)**
+   
+## IR remote
+to setup the IR Remote, use
+
+ ```python 
+ir = caernarfon.addIrRemote()     
+```

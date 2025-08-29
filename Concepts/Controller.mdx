@@ -1,0 +1,40 @@
+---
+title: Controller
+---
+# Controller
+
+A <Term name="Controller"/> (in the context of the LCPF) is an embedded controller
+running  device that uses <Term name="Devices"/>s to sense things in around it and 
+produce effects which change over time.
+
+## Practical details
+
+LCPF is not intended to support any and every embedded controller out there. The LCPF 
+has a specific [list of supported Controllers](../../Hardware/SupportedHardware.mdx#supported-controllers), and only contollers on that list will 
+give you the full benefit of the LCPF.   Adding support for new controllers is not
+necessarily difficult (for the LCPF development team) - it _can_ be a matter of
+minutes to "configure" support,  but actually testing and making sure that a new 
+controller works as expected might take a while.
+
+
+There are a number of requirements that a new controller must meet to be
+considered for LCPF support:
+
+ - It must have active CurrentPython support
+   - LCPF is built on CircuitPython, so this is a must
+ - It must have sufficient resources (CPU, RAM, Flash) to run the LCPF.  While the
+ minimums are still being determined, and _may_ vary depending between 
+ different boards, the following guidelines will likely apply:
+   - 2MB Minimum RAM (some of which may be PSRAM).  
+     - Unfortunately this rules out a lot of the available CircuitPython boards
+     - Reducing that to around 512MB, which is about the max for most types 
+of board without PSRAM, is probably not going to happen. Doing so could make it 
+fairly easy to set up a project that runs out of RAM - especially with WiFi/WebUI suppport
+ - It should support a <Term name="ShieldStandard"/>
+   - While not absolutely required, this greatly increases the flexibility and 
+options available to LCPF users for a Controller. 
+
+## Examples
+
+- <Term name="Pattern"/>s which control LEDs
+- <Term name="Motion"/>s which control movement 
